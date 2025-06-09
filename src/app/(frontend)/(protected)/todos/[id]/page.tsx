@@ -1,12 +1,16 @@
 import { Media } from '@/payload-types'
 import config from '@/payload.config'
+import { getUser } from '@/utils/get-user'
 import Image from 'next/image'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 
 export default async function TodoPage({ params }: { params: { id: string } }) {
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
+  const { user, payload } = await getUser()
+  if (!user) {
+    redirect('/login')
+  }
 
   const todoData = await payload.findByID({
     collection: 'todos',

@@ -1,22 +1,19 @@
-import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
-import { getPayload } from 'payload'
+import { redirect } from 'next/navigation'
 import React from 'react'
 import { fileURLToPath } from 'url'
-
-import config from '@/payload.config'
 import '../styles.css'
 import { Todo } from '@/payload-types'
 import Link from 'next/link'
+import LogoutButton from '@/components/buttons/logout-button/LogoutButton'
+import { getUser } from '@/utils/get-user'
 
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+  const { user, payload } = await getUser()
+  if (!user) {
+    redirect('/login')
+  }
 
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
-
+  // const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
   const todos = await payload.find({
     collection: 'todos',
     limit: 100,
@@ -27,7 +24,25 @@ export default async function HomePage() {
       <h1>Payload TodoList {user?.email}</h1>
       <div className="todos">
         <h2>Todos</h2>
-        <Link href="/todo-create"> Create Todo</Link>
+        <Link
+          href="/todo-create"
+          style={{
+            display: 'inline-block',
+            padding: '10px 20px',
+            backgroundColor: '#fff',
+            color: '#000',
+            borderRadius: '6px',
+            textDecoration: 'none',
+            fontWeight: 'bold',
+            marginBottom: '20px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+            transition: 'background 0.2s',
+          }}
+        >
+          Create Todo
+        </Link>
+
+        <LogoutButton />
 
         {todos.docs.map((todo: Todo) => (
           <div
