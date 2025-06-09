@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nio - Creative Multipurpose Template</title>
+    <style>
+        /* General Body & Typography Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            color: #526484;
+            background-color: #ffffff;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #364a63;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #6576ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #5061e6;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        
+        .primary-accent {
+            color: #6576ff;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            font-weight: 700;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.85rem 1.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #6576ff;
+            border-color: #6576ff;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5061e6;
+            border-color: #5061e6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(101, 118, 255, 0.25);
+        }
+
+        .btn-secondary {
+            color: #364a63;
+            background-color: #f0f2f5;
+            border-color: #f0f2f5;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e5e8ec;
+        }
+
+        .btn-ghost {
+            color: #6576ff;
+            background-color: transparent;
+            border-color: #6576ff;
+        }
+        
+        .btn-ghost:hover {
+            color: #fff;
+            background-color: #6576ff;
+        }
+
+        /* I. Overall Page Structure */
+        /* 1. Header Block */
+        .global-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e8ec;
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #364a63;
+            text-decoration: none;
+        }
+
+        .nav-menu ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #526484;
+            font-weight: 500;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu a.active,
+        .nav-menu a:hover {
+            color: #6576ff;
+            border-bottom: 2px solid #6576ff;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            padding: 120px 0;
+            background: linear-gradient(45deg, #f3f4ff, #faf3ff);
+            text-align: center;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-pre-headline {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero .subheading {
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2.5rem;
+            color: #8094ae;
+        }
+
+        .hero-actions .btn {
+            margin: 0 0.5rem;
+        }
+        
+        .hero-actions .btn-primary {
+             padding: 1rem 2rem;
+        }
+        
+        .social-proof {
+            margin-top: 4rem;
+        }
+        
+        .social-proof p {
+            margin-bottom: 1.5rem;
+            color: #8094ae;
+        }
+        
+        .social-proof-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            filter: grayscale(100%);
+            opacity: 0.6;
+        }
+        
+        .social-proof-logos img {
+            height: 25px;
+        }
+
+        /* 3. Features Section */
+        .section-header {
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header .tagline {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: #8094ae;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            border: 1px solid #e5e8ec;
+        }
+        
+        .feature-icon img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .feature-card h3 {
+             margin-bottom: 0.5rem;
+        }
+        
+        .feature-card p {
+            color: #8094ae;
+        }
+
+        /* 4. Alternating Content Section */
+        .alternating-content .content-row {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 80px;
+        }
+
+        .alternating-content .content-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .alternating-content .text-block {
+            flex: 1;
+        }
+
+        .alternating-content .image-block {
+            flex: 1;
+        }
+        
+        .alternating-content .image-block img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .alternating-content .tagline {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .alternating-content h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .alternating-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        
+        .alternating-content li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .alternating-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #6576ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* 5. Final CTA Banner */
+        .cta-banner {
+            background-color: #364a63;
+            color: #fff;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-banner h2 {
+            color: #fff;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+        }
+        
+        /* 6. Footer Block */
+        .global-footer {
+            background-color: #1f2b3a;
+            color: #a6b1c1;
+            padding-top: 80px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            padding-bottom: 60px;
+        }
+        
+        .footer-col h5 {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-col.about p {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: #a6b1c1;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            color: #fff;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #a6b1c1;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid #364a63;
+            border-radius: 0.25rem 0 0 0.25rem;
+            background-color: #2b3a4c;
+            color: #fff;
+        }
+        
+        .newsletter-form button {
+            padding: 0.75rem 1rem;
+            border: 1px solid #6576ff;
+            background-color: #6576ff;
+            color: #fff;
+            border-radius: 0 0.25rem 0.25rem 0;
+            cursor: pointer;
+        }
+
+        .sub-footer {
+            border-top: 1px solid #364a63;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .sub-footer-links a {
+            color: #a6b1c1;
+            margin-left: 1.5rem;
+        }
+        
+        .sub-footer-links a:hover {
+             color: #fff;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            .nav-menu { display: none; } /* Simplified for demo */
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .alternating-content .content-row { flex-direction: column; gap: 2rem; }
+            .alternating-content .content-row:nth-child(2) .image-block { order: -1; }
+            .footer-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .header-actions { display: none; } /* Simplified for demo */
+            .features-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .sub-footer { flex-direction: column; gap: 1rem; }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subheading { font-size: 1.1rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .newsletter-form { justify-content: center; }
+            .sub-footer-links { text-align: center; }
+            .sub-footer-links a { margin: 0 0.5rem; }
+        }
+
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="global-header">
+        <div class="header-container">
+            <a href="#" class="logo">Nio</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-secondary">View Demos</a>
+                <a href="#" class="btn btn-primary">Purchase Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <p class="hero-pre-headline primary-accent">Creative Multipurpose Template</p>
+                <h1>Build your stunning website with Nio.</h1>
+                <p class="subheading">
+                    Nio is a powerful and versatile multipurpose template, designed to be the perfect starting point for any kind of website.
+                </p>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary">Get Started &#128640;</a>
+                    <a href="#" class="btn btn-ghost">View Demos</a>
+                </div>
+                <div class="social-proof">
+                    <p>Used by top companies like</p>
+                    <div class="social-proof-logos">
+                        <img src="https://via.placeholder.com/100x30/ccc/fff?text=Google" alt="Google Logo">
+                        <img src="https://via.placeholder.com/100x30/ccc/fff?text=Amazon" alt="Amazon Logo">
+                        <img src="https://via.placeholder.com/100x30/ccc/fff?text=Airbnb" alt="Airbnb Logo">
+                        <img src="https://via.placeholder.com/100x30/ccc/fff?text=Hubspot" alt="Hubspot Logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p class="tagline primary-accent">Our Awesome Features</p>
+                    <h2>Features that makes you fall in love</h2>
+                    <p>Explore some of the core features that make Nio a powerful and flexible choice for your next project.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><img src="https://img.icons8.com/plasticine/100/000000/responsive-design.png" alt="Responsive Design Icon"/></div>
+                        <h3>Responsive Design</h3>
+                        <p>Fully responsive layouts that look great on any device, from mobile to desktop.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><img src="https://img.icons8.com/plasticine/100/000000/puzzle.png" alt="Easy Customization Icon"/></div>
+                        <h3>Easy Customization</h3>
+                        <p>Clean and well-commented code makes it easy to customize the template to your needs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><img src="https://img.icons8.com/plasticine/100/000000/paint-palette.png" alt="Modern UI/UX Icon"/></div>
+                        <h3>Modern UI/UX</h3>
+                        <p>Designed with modern user interface and experience principles for a seamless interaction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="alternating-content section">
+            <div class="container">
+                 <div class="section-header text-center">
+                    <p class="tagline primary-accent">Why Choose Us</p>
+                    <h2>Everything You Need for Your Project</h2>
+                </div>
+                <div class="content-row">
+                    <div class="image-block">
+                        <img src="https://via.placeholder.com/500x400/E8EAF6/3F51B5?text=Illustration+1" alt="A descriptive illustration of the feature">
+                    </div>
+                    <div class="text-block">
+                        <p class="tagline primary-accent">Powerful Tools</p>
+                        <h2>Boost Your Productivity</h2>
+                        <p>Nio comes with a suite of pre-built components and utilities that help you build faster and more efficiently. Focus on what matters, not on reinventing the wheel.</p>
+                        <ul>
+                            <li>Pre-built beautiful components</li>
+                            <li>Utility-first CSS classes for rapid styling</li>
+                            <li>Optimized for performance and speed</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="content-row">
+                    <div class="text-block">
+                        <p class="tagline primary-accent">Seamless Integration</p>
+                        <h2>Works With Your Favorite Tech</h2>
+                        <p>Our template is built with standard HTML5 and CSS3, making it incredibly easy to integrate with any modern backend technology or framework you prefer.</p>
+                        <ul>
+                            <li>Clean, valid, and semantic markup</li>
+                            <li>No complex dependencies or build tools required</li>
+                            <li>Easily adaptable to any project structure</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Explore Integrations</a>
+                    </div>
+                    <div class="image-block">
+                        <img src="https://via.placeholder.com/500x400/E0F2F1/009688?text=Illustration+2" alt="A descriptive illustration of integrations">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <div class="container">
+                <h2>Ready to create your stunning website?</h2>
+                <a href="#" class="btn btn-primary btn-lg">Purchase Nio Now</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="global-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col about">
+                    <h5>Nio</h5>
+                    <p>Nio is a multipurpose template, perfect for your next project. Built with modern technologies and a focus on user experience.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                        <a href="#">IN</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Responsive Design</a></li>
+                        <li><a href="#">Component Library</a></li>
+                        <li><a href="#">Page Demos</a></li>
+                        <li><a href="#">Integrations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Get in Touch</h5>
+                    <p>Sign up for our newsletter to get the latest updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">→</button>
+                    </form>
+                </div>
+            </div>
+            <div class="sub-footer">
+                <div class="copyright">
+                    <p>&copy; 2025 Nio. All Rights Reserved.</p>
+                </div>
+                <div class="sub-footer-links">
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
