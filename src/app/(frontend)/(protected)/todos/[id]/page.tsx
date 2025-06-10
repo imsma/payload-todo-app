@@ -6,18 +6,16 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 
-export default async function TodoPage({ params }: { params: { id: string } }) {
-  const { user, payload } = await getUser()
+// export default async function TodoPage({ params }: { params: { id: string } }) {
+export default async function TodoPage({ params }: { params: Promise<{ id: string }> }) {
+  const { user } = await getUser()
   if (!user) {
     redirect('/login')
   }
 
-  const todoData = await payload.findByID({
-    collection: 'todos',
-    id: params.id,
-  })
+  const { id } = await params
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos/${params.id}`)
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos/${id}`)
   const todo = await response.json()
 
   return (
@@ -37,12 +35,16 @@ export default async function TodoPage({ params }: { params: { id: string } }) {
       <p>Completed: {todo.completed ? 'Yes' : 'No'}</p>
       <p>{todo.createdAt}</p>
       <p>{todo.updatedAt}</p>
-      <Image
-        src={(todo.media as Media).url || ''}
-        alt={(todo.media as Media).alt || 'Todo Media'}
-        width={200}
-        height={200}
-      />
+
+      {console.log('todo.media= ', todo.media)}
+      {todo.media && typeof todo.media === 'object' && 'url' in todo.media && (
+        <Image
+          src={(todo.media as Media).url || ''}
+          alt={(todo.media as Media).alt || ''}
+          width={200}
+          height={200}
+        />
+      )}
     </div>
   )
 }

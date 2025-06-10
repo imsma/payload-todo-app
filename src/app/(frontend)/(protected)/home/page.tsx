@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { fileURLToPath } from 'url'
-import '../styles.css'
+import '../../styles.css'
 import { Todo } from '@/payload-types'
 import Link from 'next/link'
 import LogoutButton from '@/components/buttons/logout-button/LogoutButton'

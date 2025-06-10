@@ -6,7 +6,7 @@ import '../../styles.css'
 import './style.css'
 import { getUser } from '@/utils/get-user'
 
-export default async function LoginPage() {
+export default function LoginPage() {
   const router = useRouter()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,15 +30,29 @@ export default async function LoginPage() {
       credentials: 'include', // Include cookies in the request
     })
 
-    console.log('Response status:', response.status)
+    // console.log('Response:', response)
 
     if (!response.ok) {
       alert('Login failed. Please check your credentials.')
       return
     }
 
-    const result = await response.json()
-    console.log('Login successful:', result)
+    // console.log('Response status:', response.status)
+    let result = null
+    const contentType = response.headers.get('content-type')
+    console.log('Content-Type:', contentType)
+    if (contentType && contentType.includes('application/json')) {
+      result = await response.json()
+      // Optionally, use result here if needed
+    } else if (contentType && contentType.includes('text/html')) {
+      const text = await response.text()
+      // console.log('HTML response:', text)
+      // Optionally, handle HTML response here (e.g., show a message or redirect)
+    } else {
+      console.log('Unknown content type:', contentType)
+    }
+
+    // console.log('Login successful:', result)
     router.refresh()
     router.push('/') // Redirect to the dashboard or another page after successful login
   }

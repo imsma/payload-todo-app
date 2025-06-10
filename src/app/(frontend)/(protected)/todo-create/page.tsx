@@ -1,11 +1,16 @@
 import { createTodo } from '@/app/actions/createTodoaction'
 import { getUser } from '@/utils/get-user'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 export default async function TodoCreatePage() {
   const { user } = await getUser()
   if (!user) {
     redirect('/login')
+  }
+
+  const handleCancel = () => {
+    redirect('/')
   }
   return (
     <div
@@ -119,6 +124,25 @@ export default async function TodoCreatePage() {
         >
           Create Todo
         </button>
+        <Link
+          href="/"
+          style={{
+            marginTop: '10px',
+            padding: '10px 0',
+            borderRadius: '4px',
+            border: 'none',
+            background: 'grey',
+            color: '#fff',
+            fontWeight: 600,
+            fontSize: '16px',
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+            textAlign: 'center',
+            textDecoration: 'none',
+          }}
+        >
+          Cancel
+        </Link>
       </form>
     </div>
   )
